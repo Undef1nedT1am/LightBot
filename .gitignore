@@ -1,3 +1,5 @@
 LightBot-build-out
 .venv
 .idea
+*.pyc
+*.pyd
