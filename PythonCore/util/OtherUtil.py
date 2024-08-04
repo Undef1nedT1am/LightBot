@@ -1,4 +1,7 @@
 import time
+from datetime import datetime
+
+from PythonCore.util.ConfigUtil import Config
 
 
 class Timer:
@@ -17,7 +20,8 @@ class Timer:
 
 class Logger:
     def __init__(self):
-        pass
+        self.config = Config()
+        self.logConfig = self.config.getBotConfig()['log']
 
     def log(self, log_type, message):
         color_codes = {
@@ -27,7 +31,9 @@ class Logger:
             'ERROR': '\033[91m'
         }
         reset_color = '\033[0m'
-        formatted_message = f"{color_codes[log_type.upper()]}[{log_type.upper()}] {message}{reset_color}"
+        now = datetime.now()
+        logTimePart = f" - {now.hour} : {now.minute} : {now.second}" if self.logConfig['printTime'] else ""
+        formatted_message = f"{color_codes[log_type.upper()]}[{log_type.upper()}{logTimePart}] {message}{reset_color}"
         print(formatted_message)
 
     def info(self, message):

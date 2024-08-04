@@ -1,3 +1,4 @@
 aiohttp
 PyYAML
 nuitka
+aiofiles

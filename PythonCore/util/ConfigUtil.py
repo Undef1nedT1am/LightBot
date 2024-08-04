@@ -1,7 +1,7 @@
 from os import getcwd
 import aiohttp
 import yaml
-
+import aiofiles
 
 class Config(object):
     def __init__(self):
@@ -18,13 +18,13 @@ class Config(object):
             async with session.get(
                 f"https://github.com/Undef1nedT1am/LightBot/raw/main/PythonCore/config/version.yml") as r:
                 version = await r.text()
-                with open("config/version.yml", 'w') as f:
-                    f.write(version)
+                async with aiofiles.open("config/version.yml", 'w') as f:
+                    await f.write(version)
                 del r
 
             async with session.get(
                 f"https://github.com/Undef1nedT1am/LightBot/raw/main/PythonCore/config/config.yml") as r:
                 config = await r.text()
-                with open("config/config.yml", 'w') as f:
-                    f.write(config)
+                async with aiofiles.open("config/config.yml", 'w') as f:
+                    await f.write(config)
                 del r
