@@ -3,5 +3,5 @@ log:
   printTime: True
 program:
   disableRuntimeWarnings: True
-
+  checkUpdate: True
 

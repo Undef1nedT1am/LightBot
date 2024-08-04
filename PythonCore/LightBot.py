@@ -26,7 +26,8 @@ async def main():
     await logger.info("LightBot starting...")
     await logger.info("Checking updates...")
     await logger.warn("Because the version and config file are downloaded from github, so it often timed out.You need a VPN.")
-    await config.YmlsProcessor()
+    if configs['program']['checkUpdate']:
+        await config.YmlsProcessor()
     dev_version = await version.getDevVersion()
     build_time = await version.getBuildTime()
     await logger.success(f"Checked updates and replaced the file. Now the version:{dev_version}")
