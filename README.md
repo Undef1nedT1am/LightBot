@@ -1,4 +1,5 @@
 # Light Bot
+![图片](https://github.com/user-attachments/assets/7e672f6c-a748-4e71-8862-b763b4ff59f4)
 
 一个模板帮助你快速创建一个QQ机器人
 ### 关于
