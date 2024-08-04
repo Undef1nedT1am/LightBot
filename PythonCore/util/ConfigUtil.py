@@ -18,13 +18,13 @@ class Config(object):
             async with session.get(
                 f"https://github.com/Undef1nedT1am/LightBot/raw/main/PythonCore/config/version.yml") as r:
                 version = await r.text()
-                async with open("config/version.yml", 'w') as f:
+                with open("config/version.yml", 'w') as f:
                     f.write(version)
                 del r
 
             async with session.get(
                 f"https://github.com/Undef1nedT1am/LightBot/raw/main/PythonCore/config/config.yml") as r:
                 config = await r.text()
-                async with open("config/config.yml", 'w') as f:
+                with open("config/config.yml", 'w') as f:
                     f.write(config)
                 del r

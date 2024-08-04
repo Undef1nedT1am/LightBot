@@ -31,13 +31,13 @@ class Logger:
         print(formatted_message)
 
     def info(self, message):
-        self.log('[INFO]', message)
+        self.log('INFO', message)
 
     def success(self, message):
-        self.log('[SUCCESS]', message)
+        self.log('SUCCESS', message)
 
     def warn(self, message):
-        self.log('[WARN]', message)
+        self.log('WARN', message)
 
     def error(self, message):
-        self.log('[ERROR]', message)
+        self.log('ERROR', message)
