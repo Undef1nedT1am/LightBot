@@ -1,8 +1,9 @@
 # Light Bot
-一个机器人帮助你快速创建一个机器人
+
+一个模板帮助你快速创建一个QQ机器人
 ### 关于
 
-由于大多数`协议`机器人(例如GOCQ)处于账户被封禁的危险中，QSign的没落 以及`LiteLoaderQQNT`和`OneBot11标准`流行  
+由于大多数`协议`机器人(例如GOCQ)处于账户被封禁的边缘，QSign的没落 以及`LiteLoaderQQNT`和`OneBot11标准`流行  
 本项目基于 [LLOB(LiteLoader OneBot)](https://github.com/LLOneBot/LLOneBot)  
 
 [!!!!] 不要在QQ官方群内讨论本项目
@@ -12,7 +13,7 @@
 - 为什么不新建一个分支 ` kotlin`?  
 方便构建。当然会在以后新建分支，不过现在没几个开发者用本项目，暂时不考虑。（其实可能新建个项目）
 - 如果我只想开发核心的其中一个，能不能把别的删除？  
-可以，修改`buildconfig.yml`
+可以
 
 
 
