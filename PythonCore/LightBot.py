@@ -6,6 +6,7 @@ from util.OtherUtil import Timer
 from Version import Version
 from os import path as osp, mkdir
 
+
 async def main():
     if not osp.exists("config"):
         mkdir("config")

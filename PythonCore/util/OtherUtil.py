@@ -19,9 +19,7 @@ class Logger:
     def __init__(self):
         pass
 
-
     def log(self, log_type, message):
-
         color_codes = {
             'INFO': '\033[0m',
             'SUCCESS': '\033[92m',

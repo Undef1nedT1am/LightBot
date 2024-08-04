@@ -10,3 +10,4 @@ class Network(object):
         async with aiohttp.ClientSession() as session:
             async with session.post(f"{self.host}/{rtype}", json=json) as r:
                 return await r.json()
+
