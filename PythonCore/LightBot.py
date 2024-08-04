@@ -29,7 +29,7 @@ async def main():
     await config.YmlsProcessor()
     dev_version = await version.getDevVersion()
     build_time = await version.getBuildTime()
-    await logger.success(f"Checked updates and replaced the file. Now the version:{version.getDevVersion()}")
+    await logger.success(f"Checked updates and replaced the file. Now the version:{dev_version}")
     await chat.sendMsg("group", 194167989,
                        f"LightBot Dev Version v{dev_version} by Yurnu launch successfully.\rUsed time:{timer.end()}\rBuild time: {build_time}")
 

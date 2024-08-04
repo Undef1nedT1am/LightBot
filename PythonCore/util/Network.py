@@ -2,9 +2,8 @@ import aiohttp
 
 
 class Network(object):
-    def __init__(self, ptlName: str = "http", host: str = "http://localhost:3000"):
-        self.ptlName = ptlName
-        self.host = host
+    def __init__(self):
+        pass
 
     async def postJson(self, rtype, json):
         async with aiohttp.ClientSession() as session:
