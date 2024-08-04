@@ -2,13 +2,9 @@ import aiohttp
 
 from PythonCore.util.ConfigUtil import Config
 
-import uvicorn
 
-from starlette.applications import Starlette
-from starlette.responses import JSONResponse
-from starlette.routing import Route
 from starlette.requests import Request
-
+from starlette.responses import PlainTextResponse
 
 class Network(object):
     def __init__(self):
@@ -36,11 +32,12 @@ class HttpEventNetwork:
     def __init__(self, httpEventHost):
         self.httpEventHost = httpEventHost.split(':')[0]
         self.httpEventPort = httpEventHost.split(':')[1]
-    def Server(self):
-        async def PostHandle(request: Request):
-            if request.method == "POST":
-                data = await request.json()
-                # Module Code
+    async def PostHandle(self, request: Request):
+                if request.method == "POST":
+                    data = await request.json()
+                    print(data)
+                return PlainTextResponse("6")
+                    # Module Code
 
 
 
@@ -51,6 +48,5 @@ class HttpEventNetwork:
 
 
 
-        app = Starlette(debug=True, routes=[Route("/", PostHandle, methods=["POST"])])
-        uvicorn.run(app, host=self.httpEventHost, port=self.httpEventPort,log_level="warning")
+
 

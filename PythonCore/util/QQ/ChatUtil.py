@@ -29,6 +29,7 @@ class Chat(object):
         Args look at buildSendMsgJson()"""
         data = await self.network.postJson(
             "send_msg", self.buildSendMsgJson(msgType, id, text))
+        print(data)
         if data['status'] == "ok":
             await self.logger.success(f"Sent message successfully. Message Id:{data['data']['message_id']}")
         else:
