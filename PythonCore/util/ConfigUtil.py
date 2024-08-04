@@ -2,16 +2,16 @@ from os import getcwd
 import aiohttp
 import yaml
 import aiofiles
-
 class Config(object):
     def __init__(self):
         self.runPath = getcwd().replace("\\", "/")
 
-    def getBotConfig(self):
-        with open(f"{self.runPath}/config/config.yml", "r") as f:
-            data = yaml.load(f, Loader=yaml.FullLoader)
+    async def getBotConfig(self):
+        async with (aiofiles.open(f"{self.runPath}/config/config.yml", "r") as f):
+            data = await f.read()
+            data_yaml = yaml.safe_load(data)
             del f
-            return data
+            return data_yaml
 
     async def YmlsProcessor(self):
         async with aiohttp.ClientSession() as session:

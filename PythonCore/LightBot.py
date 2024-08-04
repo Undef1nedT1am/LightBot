@@ -8,6 +8,7 @@ from os import path as osp, mkdir
 
 
 async def main():
+
     # ini
     timer = Timer()
     timer.start()
@@ -17,16 +18,22 @@ async def main():
     version = Version()
     chat = Chat()
     logger = Logger()
-
+    configs = await config.getBotConfig()
+    if configs['program']['disableRuntimeWarnings']:
+        import warnings
+        warnings.filterwarnings("ignore", category=RuntimeWarning)
     # Program
-    logger.info("LightBot starting...")
-    logger.info("Checking updates...")
-    logger.warn("Because the version and config file are downloaded from github, so it often timed out.You need a VPN.")
+    await logger.info("LightBot starting...")
+    await logger.info("Checking updates...")
+    await logger.warn("Because the version and config file are downloaded from github, so it often timed out.You need a VPN.")
     await config.YmlsProcessor()
-    logger.success(f"Checked updates and replaced the file. Now the version:{version.getDevVersion()}")
+    dev_version = await version.getDevVersion()
+    build_time = await version.getBuildTime()
+    await logger.success(f"Checked updates and replaced the file. Now the version:{version.getDevVersion()}")
     await chat.sendMsg("group", 194167989,
-                       f"LightBot Dev Version v{version.getDevVersion()} by Yurnu launch successfully.\rUsed time:{timer.end()}\rBuild time: {version.getBuildTime()}")
+                       f"LightBot Dev Version v{dev_version} by Yurnu launch successfully.\rUsed time:{timer.end()}\rBuild time: {build_time}")
 
 
 if __name__ == "__main__":
+
     asyncio.run(main())

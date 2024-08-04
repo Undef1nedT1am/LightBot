@@ -1,6 +1,5 @@
 import time
 from datetime import datetime
-
 from PythonCore.util.ConfigUtil import Config
 
 
@@ -21,9 +20,9 @@ class Timer:
 class Logger:
     def __init__(self):
         self.config = Config()
-        self.logConfig = self.config.getBotConfig()['log']
+        self.logConfig = {}
 
-    def log(self, log_type, message):
+    async def log(self, log_type, message):
         color_codes = {
             'INFO': '\033[0m',
             'SUCCESS': '\033[92m',
@@ -32,18 +31,20 @@ class Logger:
         }
         reset_color = '\033[0m'
         now = datetime.now()
-        logTimePart = f" - {now.hour} : {now.minute} : {now.second}" if self.logConfig['printTime'] else ""
+        self.logConfig = await self.config.getBotConfig()
+
+        logTimePart = f" - {now.hour} : {now.minute} : {now.second}" if self.logConfig['log']['printTime'] else ""
         formatted_message = f"{color_codes[log_type.upper()]}[{log_type.upper()}{logTimePart}] {message}{reset_color}"
         print(formatted_message)
 
-    def info(self, message):
-        self.log('INFO', message)
+    async def info(self, message):
+        await self.log('INFO', message)
 
-    def success(self, message):
-        self.log('SUCCESS', message)
+    async def success(self, message):
+        await self.log('SUCCESS', message)
 
-    def warn(self, message):
-        self.log('WARN', message)
+    async def warn(self, message):
+        await self.log('WARN', message)
 
-    def error(self, message):
-        self.log('ERROR', message)
+    async def error(self, message):
+        await self.log('ERROR', message)

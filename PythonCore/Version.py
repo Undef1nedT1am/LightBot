@@ -7,12 +7,14 @@ class Version:
 
     async def getDevVersion(self):
         async with aiofiles.open(f"{self.versionPath}", "r") as f:
-            data = await yaml.load(f, Loader=yaml.FullLoader)
+            data = await f.read()
+            data_yaml = yaml.safe_load(data)
             del f
-            return data['devChannel']
+            return data_yaml['devChannel']
 
     async def getBuildTime(self):
-        async with aiofiles.open(f"{self.versionPath}", "r") as f:
-            data = await yaml.load(f, Loader=yaml.FullLoader)
+        async with (aiofiles.open(f"{self.versionPath}", "r") as f):
+            data = await f.read()
+            data_yaml = yaml.safe_load(data)
             del f
-            return data['buildTime']
+            return data_yaml['buildTime']

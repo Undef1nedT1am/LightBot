@@ -1,3 +1,5 @@
 version : 0.1.02
 log:
   printTime: True
+program:
+  disableRuntimeWarnings: True
