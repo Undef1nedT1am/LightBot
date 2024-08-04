@@ -1,11 +1,11 @@
 import asyncio
 
 from PythonCore.util.ConfigUtil import Config
+from PythonCore.util.Network import Network, HttpEventNetwork
 from util.QQ.ChatUtil import Chat
 from util.OtherUtil import Timer, Logger
 from Version import Version
 from os import path as osp, mkdir
-
 
 async def main():
 
@@ -17,6 +17,7 @@ async def main():
     config = Config()
     version = Version()
     chat = Chat()
+
     logger = Logger()
     configs = await config.getBotConfig()
     if configs['program']['disableRuntimeWarnings']:
@@ -34,10 +35,13 @@ async def main():
         await logger.success(f"Checked updates and replaced the file. Now the version:{dev_version}")
 
 
-    await chat.sendMsg("group", 194167989,
+        await chat.sendMsg("group", 194167989,
                        f"LightBot Dev Version v{dev_version} by Yurnu launch successfully.\rUsed time:{timer.end()}\rBuild time: {build_time}")
-
 
 if __name__ == "__main__":
 
     asyncio.run(main())
+    network = Network()
+    if network.protocol == "http":
+        eventServer = HttpEventNetwork("127.0.0.1:3001")#configs['bot']['httpEventHost'])
+        eventServer.Server()

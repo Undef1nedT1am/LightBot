@@ -2,3 +2,5 @@ aiohttp
 PyYAML
 nuitka
 aiofiles
+Starlette
+uvicorn

@@ -5,7 +5,6 @@ import yaml
 import aiofiles
 
 
-
 class Config(object):
     def __init__(self):
         self.runPath = getcwd().replace("\\", "/")
@@ -16,6 +15,10 @@ class Config(object):
             data_yaml = yaml.safe_load(data)
             del f
             return data_yaml
+
+    def noAsyncGetBotConfig(self):
+        with open(f"{self.runPath}/config/config.yml", "r", encoding='utf-8') as f:
+            return yaml.safe_load(f)
 
     async def YmlsProcessor(self):
         async with aiohttp.ClientSession() as session:
@@ -36,5 +39,3 @@ class Config(object):
                     f.write(config_text)
             except:
                 pass
-
-

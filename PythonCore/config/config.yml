@@ -1,4 +1,4 @@
-version : 0.1.03
+version : 0.1.04
 log:
   printTime: True #日志输出时间
 program:
@@ -15,7 +15,9 @@ bot:
   # 01 / 2 / 3 混合Http+websocket的暂不支持哦（又是个坑）
   protocols: "01"
   forwardHttpHost: http://localhost:3000 #正向http的地址，此为默认，要加http://
-  httpEventHost: http://localhost:3001 #HTTP 事件上报的地址，需要看情况修改
+  httpEventHost: localhost:3001 #HTTP 事件上报的地址，需要看情况修改，不要加http://
   #httpEventAuthKey: 114514 #暂不支持使用HTTP事件上报密钥
   forwardWebSocketHost: ws://127.0.0.1:3000 #正向Websocket地址
   backwardWebSocketHost: ws://127.0.0.1:3000 #反向websocket地址
+  #注：官网文档使用的是 FastAPI来进行HTTP上报, 我们使用Starlette
+

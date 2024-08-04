@@ -27,7 +27,8 @@ class Chat(object):
     async def sendMsg(self, msgType, id, text):
         """Send a message to user or group
         Args look at buildSendMsgJson()"""
-        data = await self.network.postJson("send_msg", self.buildSendMsgJson(msgType, id, text))
+        data = await self.network.postJson(
+            "send_msg", self.buildSendMsgJson(msgType, id, text))
         if data['status'] == "ok":
             await self.logger.success(f"Sent message successfully. Message Id:{data['data']['message_id']}")
         else:
