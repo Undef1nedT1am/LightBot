@@ -7,8 +7,8 @@ import yaml
 
 
 def checkConfig():
-    if osp.exists("PythonCore/version.yml"):
-        with open("PythonCore/version.yml", "r") as f:
+    if osp.exists("PythonCore/config/version.yml"):
+        with open("PythonCore/config/version.yml", "r") as f:
             data = yaml.load(f, Loader=yaml.FullLoader)
             if data['version'] == buildConfig['version']:
                 del f
@@ -19,7 +19,7 @@ def checkConfig():
                     k.write(get("https://github.com/Undef1nedT1am/LightBot/raw/master/config/buildconfig.yml").text)
                     del k
     else:
-        with open("PythonCore/version.yml", "w") as f:
+        with open("PythonCore/config/version.yml", "w") as f:
             f.write(get("https://github.com/Undef1nedT1am/LightBot/raw/master/version.yml").text)
             checkConfig()
 
