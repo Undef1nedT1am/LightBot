@@ -1,10 +1,11 @@
 from PythonCore.util.Network import Network
+from PythonCore.util.OtherUtil import Logger
 
 
 class Chat(object):
     def __init__(self):
         self.network = Network()
-
+        self.logger = Logger()
     def buildSendMsgJson(self, msgType: str, id: int, text: str):
         """Make a json object for sending msg
         :param msgType: str must be private or group
@@ -26,4 +27,9 @@ class Chat(object):
     async def sendMsg(self, msgType, id, text):
         """Send a message to user or group
         Args look at buildSendMsgJson()"""
-        await self.network.postJson("send_msg", self.buildSendMsgJson(msgType, id, text))
+        data = await self.network.postJson("send_msg", self.buildSendMsgJson(msgType, id, text))
+        if data['status'] == "ok":
+            await self.logger.success(f"Sent message successfully. Message Id:{data['data']['message_id']}")
+        else:
+            await self.logger.error(f"Sent message fail. {data['message']}. Message Id:{data['data']['message_id']}")
+

@@ -24,13 +24,16 @@ async def main():
         warnings.filterwarnings("ignore", category=RuntimeWarning)
     # Program
     await logger.info("LightBot starting...")
-    await logger.info("Checking updates...")
-    await logger.warn("Because the version and config file are downloaded from github, so it often timed out.You need a VPN.")
-    if configs['program']['checkUpdate']:
-        await config.YmlsProcessor()
     dev_version = await version.getDevVersion()
     build_time = await version.getBuildTime()
-    await logger.success(f"Checked updates and replaced the file. Now the version:{dev_version}")
+    if configs['program']['checkUpdate']:
+        await logger.info("Checking updates...")
+        await config.YmlsProcessor()
+        await logger.warn(
+            "Because the version and config file are downloaded from github, so it often timed out.You need a VPN.")
+        await logger.success(f"Checked updates and replaced the file. Now the version:{dev_version}")
+
+
     await chat.sendMsg("group", 194167989,
                        f"LightBot Dev Version v{dev_version} by Yurnu launch successfully.\rUsed time:{timer.end()}\rBuild time: {build_time}")
 

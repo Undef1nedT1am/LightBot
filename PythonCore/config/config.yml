@@ -1,7 +1,21 @@
 version : 0.1.03
 log:
-  printTime: True
+  printTime: True #日志输出时间
 program:
-  disableRuntimeWarnings: True
-  checkUpdate: True
-
+  disableRuntimeWarnings: True #关闭运行时警告（例如await）
+  checkUpdate: False # !!!!!!更新将会覆盖所有配置 后续也许修复
+bot:
+  #Protocols contains:
+  #0 -> HTTP 事件上报 (建议搭配正向HTTP一起使用) 只能收
+  #1 -> HTTP Forward 正向HTTP 只能发
+  #2 -> WebSocket Forward 正向Websocket 能收也能发
+  #3 -> WebSocket Backward 反向Websocket(不建议使用) 能收也能发
+  # 例子： "01" ：HTTP事件上报+正向HTTP
+  #可选的配置：
+  # 01 / 2 / 3 混合Http+websocket的暂不支持哦（又是个坑）
+  protocols: "01"
+  forwardHttpHost: http://localhost:3000 #正向http的地址，此为默认，要加http://
+  httpEventHost: http://localhost:3001 #HTTP 事件上报的地址，需要看情况修改
+  #httpEventAuthKey: 114514 #暂不支持使用HTTP事件上报密钥
+  forwardWebSocketHost: ws://127.0.0.1:3000 #正向Websocket地址
+  backwardWebSocketHost: ws://127.0.0.1:3000 #反向websocket地址

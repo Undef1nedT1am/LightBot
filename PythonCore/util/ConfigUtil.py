@@ -11,7 +11,7 @@ class Config(object):
         self.runPath = getcwd().replace("\\", "/")
 
     async def getBotConfig(self):
-        async with (aiofiles.open(f"{self.runPath}/config/config.yml", "r") as f):
+        async with (aiofiles.open(f"{self.runPath}/config/config.yml", "r", encoding='utf-8') as f):
             data = await f.read()
             data_yaml = yaml.safe_load(data)
             del f
